@@ -1,28 +1,28 @@
 # Permalinks
-permalink:      /:year-:month-:day/:title
+permalink: /:year-:month-:day/:title
 
 # Setup
-title:          Jihye Leee
-baseurl:        ""
-url:            "https://www.jihyeleee.com"
+title: Jungwoo LEE
+baseurl: ""
+url: "https://www.jungwoo3490.github.io"
 
 # Assets
 sass:
-  sass_dir:     _sass
-  style:        :compressed
+  sass_dir: _sass
+  style: :compressed
 
 # Build settings
-markdown:       kramdown
+markdown: kramdown
 
 # About
 author:
-  name:         Jihye Leee
-  url:          https://jihyeleee.com/
-  email:        iam.leejihye@gmail.com  
-  github:       iamleejihye
-  twitter:      hitchhikerj
+  name: Jungwoo Lee
+  url: https://jungwoo3490.github.io/
+  email: jungwoo3490@naver.com
+  github: jungwoo3490
+  twitter:
 
 # Custom vars
-version:        3.4.1
+version: 3.4.1
 github:
-  repo:         https://github.com/iamleejihye/iamleejihye.github.io
+  repo: https://github.com/jungwoo3490/jungwoo3490.github.io
