@@ -1,5 +1,6 @@
-# Affiliates - Free Jekyll Theme
+# This is my portfolio site based on blog.
+https://jihyeleee.com/
+![image](https://www.jihyeleee.com/img/share-img.jpg)
+It's forked from (chesterhow/tale)[https://github.com/chesterhow/tale].
 
-[Live Demo](https://wowthemesnet.github.io/affiliates-jekyll-theme/) | [Docs & Download](https://bootstrapstarter.com/template-affiliates-bootstrap-jekyll/) |  [Buy me a coffee](https://www.wowthemes.net/donate/)
-
-![jekyll-affiliates-theme](https://bootstrapstarter.com/assets/img/themes/affiliates-jekyll.jpg)
+© Jihye Leee. 2021
