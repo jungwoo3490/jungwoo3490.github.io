@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[JUNGWOO DEV LOUNGE's RSS Feed]]></title><description><![CDATA[JUNGWOO DEV LOUNGE]]></description><link>https://jungwoo3490.github.io</link><generator>GatsbyJS</generator><lastBuildDate>Thu, 03 Apr 2025 18:02:53 GMT</lastBuildDate><item><title><![CDATA[Node 버전을 올리기만 했는데 require(esm) 에러가 발생했다구요?]]></title><description><![CDATA[회사에 신규 팀원이 합류해서 프로젝트를 clone하고 의존성을 설치하고 개발서버를 열려고 스크립트를 실행했는데, 오류가 발생했다는 제보를 받았어요. 오류 메시지는 다음과 같았어요.  어라 난 require…]]></description><link>https://jungwoo3490.github.io/blog/require-esm/</link><guid isPermaLink="false">https://jungwoo3490.github.io/blog/require-esm/</guid><pubDate>Tue, 01 Apr 2025 21:01:00 GMT</pubDate><content:encoded>&lt;p&gt;회사에 신규 팀원이 합류해서 프로젝트를 clone하고 의존성을 설치하고 개발서버를 열려고 스크립트를 실행했는데, 오류가 발생했다는 제보를 받았어요.&lt;/p&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[JUNGWOO DEV LOUNGE's RSS Feed]]></title><description><![CDATA[JUNGWOO DEV LOUNGE]]></description><link>https://jungwoo3490.github.io</link><generator>GatsbyJS</generator><lastBuildDate>Thu, 03 Apr 2025 18:06:42 GMT</lastBuildDate><item><title><![CDATA[Node 버전을 올리기만 했는데 require(esm) 에러가 발생했다구요?]]></title><description><![CDATA[회사에 신규 팀원이 합류해서 프로젝트를 clone하고 의존성을 설치하고 개발서버를 열려고 스크립트를 실행했는데, 오류가 발생했다는 제보를 받았어요. 오류 메시지는 다음과 같았어요.  어라 난 require…]]></description><link>https://jungwoo3490.github.io/blog/require-esm/</link><guid isPermaLink="false">https://jungwoo3490.github.io/blog/require-esm/</guid><pubDate>Tue, 01 Apr 2025 21:01:00 GMT</pubDate><content:encoded>&lt;p&gt;회사에 신규 팀원이 합류해서 프로젝트를 clone하고 의존성을 설치하고 개발서버를 열려고 스크립트를 실행했는데, 오류가 발생했다는 제보를 받았어요.&lt;/p&gt;
 &lt;p&gt;오류 메시지는 다음과 같았어요.&lt;/p&gt;
 &lt;p&gt;&lt;span
       class=&quot;gatsby-resp-image-wrapper&quot;
@@ -310,12 +310,61 @@
     &lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;rollup&lt;/code&gt;을 찾을 수 없다고...? 이번 에러는 정말 감이 잡히지 않았어요.&lt;br/&gt;
 &lt;code&gt;rollup&lt;/code&gt;을 의존성으로 가지고 있는 Vite에서 뭔가 알지 않을까 해서 Maintainer분께 물어보게 되었고, Maintainer분께서는 Yarn PnP의 이슈인 것 같다며 Discussion 링크를 주셨어요. 그곳에서 해답을 얻을 수 있었어요.&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 650px; &quot;
+    &gt;
+      &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 74.84662576687117%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAPCAYAAADkmO9VAAAACXBIWXMAAAsTAAALEwEAmpwYAAACb0lEQVR42nVUaZfaMAz0176WXW6SQCAHkJNwhXAte7X//y9NNUpgX/vaDxM7sixrPJLNNIgxCxN481QxC2OFt5D5PGnWksaewF9mOobRCtzrLzLd5y9yDOwZzP54Q3V5x+nlA5fXT8FPnG+fisP5DcfrB6rrO7bVFev9GeXpFZvDBZvygp3YdtULdscX8XtHstrB8LQo22IeFxjPFnD9pZwcPcDMnOkczz0bT11LUc9Hj/87Wp0RDD8Mlm8qBMtcQRpKW6jQ8Vurh+/PA/xoD3XTffwXTGfgIF2XOAnFWFKO8p0eEGUbzZxBu8OJojMYa7D/QQPS0RGq82QNW6i5foSJtxRRMkzD5CEYRaiDj9HuOw/wkE5zGP9NnG+RrQ9YphukRYlYMiR92vmfFvsGpRxaqO9qexSfA4rdEcX+pAKF8Qq9kQtDIRiMGSQSjFkwS27mGgMzW7XxKsRnLAyeOlaTpa0ikS7v2QQSiCVhTQIMHA89a6o1NfEi2O5cr6M7dKX+cjksk1rz0LdmcmdfQtzvjwKaQE7dHl8RC6W+7eO5P0YQryVQBDdI5R5TtLoOgqiQ/0TWRSAJ2GqP/lD9IQozYJmEQpGi8BR7GmrVD8c+LDeUgJaOtD31aqp/1yXBoIYCsPK3iisub7+wLs9a+ewAdsNBOokdQh92D1E1tn3jU13esJBKMZnUIC+bfUkR2B0cWToTGevuka7R/hZxxM+WbGkjuM5OcoQVS8dQ3TDKNZDr1a1GJ30I+EDIyDU+EPWY6lwfDAnORO42tq1hDZWnmzZ5TeGmFGgjHdLj2uFc0yM1zmnjnA8GNQiaV+g31VKpSq++mBcAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;alt text&quot;
+        title=&quot;&quot;
+        src=&quot;/static/c0da4ad0584e5ed9bfe29b74984387bf/a6d36/image-49.png&quot;
+        srcset=&quot;/static/c0da4ad0584e5ed9bfe29b74984387bf/222b7/image-49.png 163w,
+/static/c0da4ad0584e5ed9bfe29b74984387bf/ff46a/image-49.png 325w,
+/static/c0da4ad0584e5ed9bfe29b74984387bf/a6d36/image-49.png 650w,
+/static/c0da4ad0584e5ed9bfe29b74984387bf/e548f/image-49.png 975w,
+/static/c0da4ad0584e5ed9bfe29b74984387bf/5c744/image-49.png 1206w&quot;
+        sizes=&quot;(max-width: 650px) 100vw, 650px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+        decoding=&quot;async&quot;
+      /&gt;
+    &lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;Node는 &lt;code&gt;require(esm)&lt;/code&gt;을 구현할 때 ESM 모듈 내부의 정적 import를 처리하기 위해 특별한 경로를 사용했어요.&lt;br/&gt;
 이 경로는 CJS 로더 파이프라인(&lt;code&gt;Module.\_resolveFilename&lt;/code&gt;)도 통과하지 않았고, ESM 로더 파이프라인(&lt;code&gt;--loader&lt;/code&gt; / &lt;code&gt;module.register()&lt;/code&gt;)도 완전히 활용되지 않았어요.&lt;/p&gt;
 &lt;p&gt;이 특수한 경로가 노출되어 있지 않았기에, PnP에서 이 경로에 개입해서 커스텀할 수 있는 방법이 존재하지 않았어요. 결국 이 경우 Node의 기본 동작으로 fallback하게 되고 &lt;code&gt;node_modules&lt;/code&gt;에서 패키지를 열심히 찾지만 &lt;code&gt;node_modules&lt;/code&gt;이 없는 PnP에서 발견될 리가 없죠. 결국 &lt;code&gt;Module_not_found&lt;/code&gt; 오류가 발생하게 돼요.&lt;/p&gt;
 &lt;p&gt;Vite 내부에서 &lt;code&gt;rollup&lt;/code&gt; 내부 모듈을 정적 import로 가져오는 부분이 있는데, 위와 같은 이유로 &lt;code&gt;rollup&lt;/code&gt;을 &lt;code&gt;node_modules&lt;/code&gt;에서 찾아버린 바람에 못 찾게 된 것이었어요.&lt;/p&gt;
 &lt;h2&gt;Node 23.5.0&lt;/h2&gt;
 &lt;p&gt;그러던 중, Node 23.5.0에 큰 변화가 오게 됩니다. Node에서 &lt;code&gt;module.registerHooks&lt;/code&gt;라는 API를 공개했는데, 이 API를 사용하면 모듈 로더 파이프라인에 공식적으로 개입이 가능해지게 돼요.&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 650px; &quot;
+    &gt;
+      &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 37.423312883435585%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAHCAYAAAAIy204AAAACXBIWXMAAAsTAAALEwEAmpwYAAABTUlEQVR42o3RXU7bQBDAcd8C1AtQVM6D+ggq3KNEhb71EAQUcQsOABKWKkocAjROvPbu2iQ4hmT98e8koEq0PLDSTzOr2dXsh6fihJ+/ugTXfS6vAoL+DT1xFfS47Ab0b+9wZcl7h/eQWe5VyFjHuHxCWUxwU4kLj/lSPSvezbv5sYu/tYb/ZR1/+yP+7gb+zgYXO584//yB881Vzv5aefGcL2r/8szpCb/bLcLOdwbtPcLjb4w6+6jOAaOjltgjkrh0/Fp4+PU/Xi33zooZYTomnk/R7gnX1BRNxaPEWd1Q1It5zdRVTOflcywrmuaNN2xkcV06EhWRphp7H5ONE6GJ0yEmVRijiMyAYXyHikKiYcgoHKBlj5s9QV1BVdJUDi9/yJlM5HRWYVOLlU8yVi9zkxqhpVG6zBObkJgEraVuLUpLM2mc5ZmwzN2cP8xg6hpHFFF4AAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;alt text&quot;
+        title=&quot;&quot;
+        src=&quot;/static/58f22a3ae81dbf35d97fbb1d3c6eecac/a6d36/image-50.png&quot;
+        srcset=&quot;/static/58f22a3ae81dbf35d97fbb1d3c6eecac/222b7/image-50.png 163w,
+/static/58f22a3ae81dbf35d97fbb1d3c6eecac/ff46a/image-50.png 325w,
+/static/58f22a3ae81dbf35d97fbb1d3c6eecac/a6d36/image-50.png 650w,
+/static/58f22a3ae81dbf35d97fbb1d3c6eecac/e548f/image-50.png 975w,
+/static/58f22a3ae81dbf35d97fbb1d3c6eecac/3c492/image-50.png 1300w,
+/static/58f22a3ae81dbf35d97fbb1d3c6eecac/e4ba2/image-50.png 1468w&quot;
+        sizes=&quot;(max-width: 650px) 100vw, 650px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+        decoding=&quot;async&quot;
+      /&gt;
+    &lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;PnP도 기존에 비공식적인 방법으로 monkey-patch해서 사용했지만, &lt;code&gt;module.registerHooks&lt;/code&gt;를 사용하면 monkey-patch 없이 공식적으로 개입이 가능해진 거죠. 심지어 기존에 불가능했던 &lt;code&gt;require(esm)&lt;/code&gt; 내부 정적 import 파이프라인에 대한 개입도 가능해졌고, PnP에서 완전히 &lt;code&gt;require(esm)&lt;/code&gt;을 지원할 수 있게 되었어요.&lt;/p&gt;
 &lt;p&gt;실제로 Node 버전을 23.5.0 이상으로 올리게 되면, 에러가 말끔히 사라지게 돼요.&lt;/p&gt;
 &lt;h2&gt;느낀 점&lt;/h2&gt;
