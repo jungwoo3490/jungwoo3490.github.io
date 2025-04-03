@@ -178,7 +178,6 @@ const pwaPlugins = [
 module.exports = {
   graphqlTypegen: true,
   siteMetadata,
-  pathPrefix: "/my-blog",
   plugins: [
     ...corePlugins,
     ...devPlugins,
