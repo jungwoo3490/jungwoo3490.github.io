@@ -9,14 +9,9 @@ import ThemeContext from "~/src/stores/themeContext"
 import GlobalStyle from "~/src/styles/globalStyle"
 import styledTheme from "~/src/styles/styledTheme"
 
-import packageJSON from "../../package.json"
-
-const { name, homepage } = packageJSON
-
 const Layout: React.FC<React.PropsWithChildren> = ({ children }) => {
   const { theme, themeToggler } = useTheme()
-  const { title, author } = useSiteMetadata()
-  const copyrightString = `Copyright © ${author}. Built with `
+  const { title } = useSiteMetadata()
 
   return (
     <ThemeProvider theme={styledTheme}>
@@ -27,12 +22,7 @@ const Layout: React.FC<React.PropsWithChildren> = ({ children }) => {
           {children}
         </Container>
         <Footer role="contentinfo">
-          <Copyright aria-label="Copyright">
-            {copyrightString}
-            <RepoLink href={homepage} target="__blank">
-              {name}
-            </RepoLink>
-          </Copyright>
+          <Copyright aria-label="Copyright"></Copyright>
         </Footer>
       </ThemeContext.Provider>
     </ThemeProvider>
@@ -59,13 +49,6 @@ const Copyright = styled.span`
   font-size: var(--text-sm);
   font-weight: var(--font-weight-regular);
   color: var(--color-gray-6);
-`
-
-const RepoLink = styled.a`
-  color: var(--color-blue);
-  &:hover {
-    text-decoration: underline;
-  }
 `
 
 export default Layout
