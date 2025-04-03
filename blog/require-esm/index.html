@@ -305,12 +305,12 @@ data-styled.g34[id="blogPost__Title-sc-1q4tilm-8"]{content:"boesS,"}/*!sc*/
 또 tree-shaking을 할 수 없었어요. 미리 모듈 사이의 연관관계를 분석해야 사용되지 않는 모듈을 파악하고 tree-shaking이 가능한데, 런타임에 require문을 만났을 때 동기적으로 모듈을 로드하기 때문에 이런 연관관계를 런타임 전에 미리 분석할 수가 없었기 때문이에요.</p>
 <p>하지만 ESM은 빌드 타임에 정적으로 모듈을 분석해서 의존성 트리를 만들어요. 즉, 런타임 이전에 모듈간의 의존성을 미리 파악할 수 있게 되고, 이로 인해 tree-shaking도 가능해지죠.</p>
 <p>더 깊게 알아볼까요?? ESM이 브라우저에서 동작하기 위해서는 모듈 레코드라는 자료구조로 변경이 되어야 하는데, 이런 모듈화 과정은 구성(construction), 인스턴스화(instantiation), 평가(Evaluation)의 3단계로 이루어져요.<br/></p>
-<p>구성(construction) 단계는 esm loader가 entry point부터 시작하여 모든 모듈 파일을 로드, 파싱하여 모듈 레코드로 변환하고, 모듈 맵에 추가해요.</p>
+<p>구성(construction) 단계는 ESM loader가 entry point부터 시작하여 모든 모듈 파일을 로드, 파싱하여 모듈 레코드로 변환하고, 모듈 맵에 추가해요.</p>
 <p>인스턴스화(instantiation) 단계는 모듈 인스턴스들을 메모리에 연결하는 단계에요. JS 엔진이 모듈 레코드의 변수를 관리하는 모듈 환경 레코드를 생성하고, 모든 export된 값을 배치하기 위한 메모리 공간을 찾아요. 모든 export 연결을 마무리하면 해당 모듈에서 import 한 항목들을 export들과 연결해요. 이 과정을 통해 동일 모듈에 대한 export와 import는 같은 메모리의 주소를 가리키게 돼요.</p>
 <p>평가(Evaluation) 단계에서는 코드를 실행하여 메모리를 변수의 실제 값으로 채우는 단계예요.</p>
-<p>이렇게 cjs와 esm이 동작하는 메커니즘과 로더가 완전 다르기도 하고, require(esm)을 하지 못하는 가장 큰 이유는 ESM에서 지원하는 top-level await이라는 기능 때문이에요.</p>
+<p>이렇게 CJS와 ESM이 모듈을 로드하는 메커니즘이 완전 다르기도 하고, <code>require(esm)</code>을 하지 못하는 가장 큰 이유는 ESM에서 지원하는 top-level await이라는 기능 때문이에요.</p>
 <p>기존에 await를 사용하려면 async 함수 스코프 내부에 가둬서 사용을 해야 했는데, ESM에서는 top level에서 async 없이 await을 호출할 수 있어요. 하지만 이 기능을 CJS에서는 지원하지 않았기 때문에 <code>require(esm)</code>은 이론상 불가능하게 됐어요.</p>
-<p>Node 22.12.0 이전 버전까지는 <code>require(esm)</code>은 실험적 기능이었고, 특정 플래그를 통해서만 사용할 수 있었어요. 하지만 22.12.0부터 require(esm) 기능이 default로 동작하게 되었어요.</p>
+<p>Node 22.12.0 이전 버전까지는 <code>require(esm)</code>은 실험적 기능이었고, 특정 플래그를 통해서만 사용할 수 있었어요. 하지만 22.12.0부터 <code>require(esm)</code> 기능이 default로 동작하게 되었어요.</p>
 <h2>끝없는 의문</h2>
 <p>22.12.0부터 <code>require(esm)</code>을 지원했구나!!! 여기까지는 이해했어요.</p>
 <p>그런데 까면 깔수록 더욱 이상해집니다... 그럼 22.12.0 이하 버전에서는 에러가 나야 하고, 22.12.0부터 되어야 하는 거 아닌가...?</p>
@@ -346,7 +346,7 @@ data-styled.g34[id="blogPost__Title-sc-1q4tilm-8"]{content:"boesS,"}/*!sc*/
 <p>require로 vite를 가져오면 <code>index.cjs</code>, 즉 CJS 모듈을 내보내고, import로 가져오면 esm 모듈을 내보내요.<br/>
 즉, vite는 무조건 ESM만 제공하는게 아니라, CJS, ESM 두 방식에 대해 모두 대응을 하고 있었어요. 6버전이 됐음에도 불구하구요.</p>
 <p>실제로 코어 함수들은 모두 <code>node/index.js</code>에 ESM으로 작성되어 있어요. 그러면 <code>index.cjs</code> 내부는 어떻게 구성되어 있을까요??</p>
-<p>먼저 warnCJSUsage() 를 호출해요. 처음에 22.11.0에서 뜬 warning 문구가 이 함수 호출로 인해서 뜨게 된 것이었어요.</p>
+<p>먼저 <code>warnCJSUsage()</code> 를 호출해요. 처음에 22.11.0에서 뜬 warning 문구가 이 함수 호출로 인해서 뜨게 된 것이었어요.</p>
 <p><span
       class="gatsby-resp-image-wrapper"
       style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 650px; "
@@ -396,11 +396,11 @@ data-styled.g34[id="blogPost__Title-sc-1q4tilm-8"]{content:"boesS,"}/*!sc*/
         decoding="async"
       />
     </span></p>
-<p><code>index.cjs</code>에서 먼저 ESM에서 제공하는 함수들을 미리 정의만 해둔 뒤, ESM Vite 모듈을 동적 import로 가져온 뒤 가져온 모듈에서 미리 정의해둔 함수들에 실제로 매핑하게 돼요. <br/>결국 코어 함수는 ESM에서 제공하지만, CJS에서 이를 짜맞추기 방식으로 가져와서 매핑해서 제공하는 방식으로 CJS 환경에서도 동작하도록 호환성을 보장했던 것이었죠.</p>
+<p><code>index.cjs</code>에서 먼저 ESM에서 제공하는 함수들을 미리 정의만 해둔 뒤, ESM Vite 모듈을 dynamic import로 가져온 뒤 가져온 모듈에서 미리 정의해둔 함수들에 실제로 매핑하게 돼요. <br/>결국 코어 함수는 ESM에서 제공하지만, CJS에서 이를 짜맞추기 방식으로 가져와서 매핑해서 제공하는 방식으로 CJS 환경에서도 동작하도록 호환성을 보장했던 것이었죠.</p>
 <p>그래서 22.11.0에서 <code>require("vite")</code>로 가져오면 CJS Vite가 가져와져서 경고는 뜨지만, 정상적으로 동작했던 것이었어요. 의문이 하나 풀렸네요!!</p>
 <p>그런데 해결되지 않은 다른 의문이 있습니다. 22.12.0부터 <code>require(esm)</code>을 제공하긴 하지만, 어차피 require로 받아온거니까 위 export field에 따르면 <code>index.cjs</code>가 받아져서 경고만 뜨고 정상 구동되어야 하는거 아닐까요??</p>
 <p>다시 위로 가서 export 필드를 보면, 익숙한 <code>import</code>, <code>require</code> 말고도 <code>module-sync</code>라는 낯선 친구가 있습니다. 이 친구는 뭐 하는 친구일까요??</p>
-<p>vite는 공식적으로는 ESM을 지원해요. 현재는 CJS -> ESM으로 넘어가는 과도기이고, 그렇기에 Dual export를 아직까지는 제공하지만, 추후 deprecated될 확률이 높아요.</p>
+<p>Vite는 공식적으로는 ESM을 지원해요. 현재는 CJS -> ESM으로 넘어가는 과도기이고, 그렇기에 Dual export를 아직까지는 제공하지만, 추후 deprecated될 확률이 높아요.</p>
 <p>Node에서도 안정적인 마이그레이션을 위해 <code>require(esm)</code>을 지원하기 시작한 것이라는 생각이 들어요. Node 22.12.0부터는 어차피 <code>require(esm)</code>을 지원하는데, Vite에서 굳이 require라는 이유로 비공식적인 CJS를 지원할 필요가 있을까요??</p>
 <p>실제로 Vite 팀에서 같은 생각을 했고, module-sync라는 필드를 만들었어요. Node가 <code>require(esm)</code>을 지원하는 버전이라면 (> 22.12.0) <code>module-sync</code>에 해당되고, 이때는 <code>require</code>/<code>import</code> 구분 없이 모두 ESM 모듈을 내보내게 돼요.</p>
 <p>하지만 esm으로 내보내졌더라도, Node에서 require(esm)을 지원하기 때문에 에러가 발생하지 않아야 해요. 근데 왜 발생하고 있는 걸까요?? 원인은 Yarn PnP에 있었어요.</p>
