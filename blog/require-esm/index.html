@@ -236,7 +236,7 @@ data-styled.g34[id="blogPost__Title-sc-1q4tilm-8"]{content:"boesS,"}/*!sc*/
 다른 하나의 옵션은 <code>"module"</code>이에요. 이럴 경우 ESM 형식으로 해석되어요.</p>
 <p><code>.ts</code> 파일은 TypeScript 4.7 버전부터 <code>tsconfig.json</code>의 <code>moduleResolution</code> 필드가 <code>nodenext</code> 또는 <code>node16</code> 으로 설정된 경우 위에 서술한 규칙이 똑같이 적용되게 돼요.</p>
 <p>당시 Vite config 파일의 확장자가 <code>.ts</code>였는데, 이것저것 마이그레이션하는 과정에서 type field 지정을 빼먹게 되어서 .ts 파일이 CJS 형식으로 해석되어서 require("vite")와 같은 형태가 되게 돼요.</p>
-<p>Vite 공식문서를 보면 다음과 같이 vite는 6버전부터 모든 모듈을 ESM으로 지원한다고 서술되어 있어요.<br/></p>
+<p>Vite 공식문서를 보면 다음과 같이 Vite는 6버전부터 모든 모듈을 ESM으로 지원한다고 서술되어 있어요.<br/></p>
 <p><span
       class="gatsby-resp-image-wrapper"
       style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 650px; "
@@ -316,8 +316,8 @@ data-styled.g34[id="blogPost__Title-sc-1q4tilm-8"]{content:"boesS,"}/*!sc*/
 <p>그런데 까면 깔수록 더욱 이상해집니다... 그럼 22.12.0 이하 버전에서는 에러가 나야 하고, 22.12.0부터 되어야 하는 거 아닌가...?</p>
 <p>지금은 이와 완전 반대인 상황이에요. 대체 왜 이런 상황이 발생한 걸까요??</p>
 <h2>Vite의 Dual package export 방식</h2>
-<p>package.json의 exports field를 활용하면 동일한 import path에 대해 특정 조건에 따라 다른 모듈을 제공할 수 있어요. 이를 Dual Package라고 칭해요.</p>
-<p>Vite의 export 필드를 확인해보았는데, 정확히 Dual Package 방식으로 동작하고 있었어요.</p>
+<p><code>package.json</code>의 <code>exports</code> field를 활용하면 동일한 import path에 대해 특정 조건에 따라 다른 모듈을 제공할 수 있어요. 이를 Dual Package라고 칭해요.</p>
+<p>Vite의 <code>exports</code> 필드를 확인해보았는데, 정확히 Dual Package 방식으로 동작하고 있었어요.</p>
 <p><span
       class="gatsby-resp-image-wrapper"
       style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 650px; "
@@ -343,8 +343,8 @@ data-styled.g34[id="blogPost__Title-sc-1q4tilm-8"]{content:"boesS,"}/*!sc*/
         decoding="async"
       />
     </span></p>
-<p>require로 vite를 가져오면 <code>index.cjs</code>, 즉 CJS 모듈을 내보내고, import로 가져오면 esm 모듈을 내보내요.<br/>
-즉, vite는 무조건 ESM만 제공하는게 아니라, CJS, ESM 두 방식에 대해 모두 대응을 하고 있었어요. 6버전이 됐음에도 불구하구요.</p>
+<p>require로 Vite를 가져오면 <code>index.cjs</code>, 즉 CJS 모듈을 내보내고, import로 가져오면 esm 모듈을 내보내요.<br/>
+즉, Vite는 무조건 ESM만 제공하는게 아니라, CJS, ESM 두 방식에 대해 모두 대응을 하고 있었어요. 6버전이 됐음에도 불구하구요.</p>
 <p>실제로 코어 함수들은 모두 <code>node/index.js</code>에 ESM으로 작성되어 있어요. 그러면 <code>index.cjs</code> 내부는 어떻게 구성되어 있을까요??</p>
 <p>먼저 <code>warnCJSUsage()</code> 를 호출해요. 처음에 22.11.0에서 뜬 warning 문구가 이 함수 호출로 인해서 뜨게 된 것이었어요.</p>
 <p><span
@@ -410,10 +410,84 @@ data-styled.g34[id="blogPost__Title-sc-1q4tilm-8"]{content:"boesS,"}/*!sc*/
 <p>하지만 Yarn 4.5.3에서 patch한 CJS loader에서 <code>require(esm)</code>을 지원하지 않았어요. 결국 Node는 지원을 하지만, Yarn PnP에서 패치한 module loader에서 <code>require(esm)</code>에 대한 지원이 없어서 발생한 문제였어요.</p>
 <p>이는 다행히도 yarn 4.6.0에서 지원을 시작했어요.<br/>
 어떻게 지원을 하게 되었는지 궁금해서 찾아봤는데 다음과 같은 조건문으로 <code>require(esm)</code> 에러 여부를 제어하고 있었어요.</p>
-<p><code>process.features.require_module</code>이 뭘까?? 궁금해서 찾아봤는데, 다음과 같이 Node에서 <code>require(esm)</code>을 지원하는지 안 하는지에 대한 flag였어요.</p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 650px; "
+    >
+      <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 20.245398773006134%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAECAYAAACOXx+WAAAACXBIWXMAAAsTAAALEwEAmpwYAAAA1klEQVR42l2P226CQBRF/QWppq0gYOQyM8BwKRpEiPGlxv//oNXDpDFpH1ZmHs5e+5xV8rToR09iU7prjxk67PVEMbSETca+NQStIuo0YWfw61zIHDvJfFYJH+WRjQ55UyGr5Fmhvr8Iiwg79dT3GTP26L5EDZZ0OhPLPzlXZJdGxFLQ5FKk8EX4bg4ii53sJTSPE14WoCVU3SfK20wxzujxQjrU+LLptkodS2gts+s8wMv3eL+il/AowuXkZejQpMRtQWCVO2krzY4iZmPkddtEfwT/+QHy3HSwpJtxsQAAAABJRU5ErkJggg=='); background-size: cover; display: block;"
+  ></span>
+  <img
+        class="gatsby-resp-image-image"
+        alt="alt text"
+        title=""
+        src="/static/8d526ab0550b8c5f14db4f80c3b2f0f6/a6d36/image-48.png"
+        srcset="/static/8d526ab0550b8c5f14db4f80c3b2f0f6/222b7/image-48.png 163w,
+/static/8d526ab0550b8c5f14db4f80c3b2f0f6/ff46a/image-48.png 325w,
+/static/8d526ab0550b8c5f14db4f80c3b2f0f6/a6d36/image-48.png 650w,
+/static/8d526ab0550b8c5f14db4f80c3b2f0f6/e548f/image-48.png 975w,
+/static/8d526ab0550b8c5f14db4f80c3b2f0f6/3c492/image-48.png 1300w,
+/static/8d526ab0550b8c5f14db4f80c3b2f0f6/0ddab/image-48.png 2220w"
+        sizes="(max-width: 650px) 100vw, 650px"
+        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+        loading="lazy"
+        decoding="async"
+      />
+    </span></p>
+<p>여기서 <code>process.features.require_module</code>은 다음과 같이 Node에서 <code>require(esm)</code>을 지원하는지 안 하는지에 대한 flag에요.</p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 650px; "
+    >
+      <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 15.950920245398773%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAADCAYAAACTWi8uAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAiUlEQVR42k3O2QrDIBAF0Pz/3wUiEsW3PgnV4IJL1VsdklLhOM6gFzdjDDjnkFJCCIHjOKCUonqeJxhj2PcdIQSsNcZYO9XHM1+21hqstdBaI6VEcs6klPI7r3vrQe+3v8DWO6HAWiuu6yLeewp3ziHGSD2ZvXMexhe8bzbW6TNnGS9tYV2kn34BZWPmba5i5wYAAAAASUVORK5CYII='); background-size: cover; display: block;"
+  ></span>
+  <img
+        class="gatsby-resp-image-image"
+        alt="alt text"
+        title=""
+        src="/static/8dcd4909c227d442451be2c92c095f7c/a6d36/image-47.png"
+        srcset="/static/8dcd4909c227d442451be2c92c095f7c/222b7/image-47.png 163w,
+/static/8dcd4909c227d442451be2c92c095f7c/ff46a/image-47.png 325w,
+/static/8dcd4909c227d442451be2c92c095f7c/a6d36/image-47.png 650w,
+/static/8dcd4909c227d442451be2c92c095f7c/e548f/image-47.png 975w,
+/static/8dcd4909c227d442451be2c92c095f7c/8b70b/image-47.png 1266w"
+        sizes="(max-width: 650px) 100vw, 650px"
+        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+        loading="lazy"
+        decoding="async"
+      />
+    </span></p>
 <p>결국 Node에서 <code>require(esm)</code>을 지원하는 버전이라면 <code>require(esm)</code> 오류가 우회되는 방식이었어요. 그럼 4.6.0으로 업데이트하면 되겠네요!!!</p>
 <h2>또 다른 에러...</h2>
 <p><code>require(esm)</code> 에러는 예상대로 해결됐어요. 하지만 또 다른 에러를 마주하게 되었어요.</p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 650px; "
+    >
+      <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 30.061349693251532%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAGCAYAAADDl76dAAAACXBIWXMAAAsTAAALEwEAmpwYAAAA/UlEQVR42k2R6Y7CMAyE+xAI2i5Nj6QJAsEiji09uN//mcyMlZX4MbJb2V/GdtI5J6fGyjN4KMjUtnL1Xi7Wytg66RAHxB7a17Ucm0a1Q26LQtqolTGyrSpJmJxso00XZ2UiDPGu0Sl0QPwD+LeuZIemA4ABfQT5qDzLZDafS5KlqRa/4e4FnVFMhyOcDtBN5dX5FPP3KiiQvSbPZQkYcyohuYcDjvv0QR3dI3DU8QHBN+M1ApnTBN0GU8hPBKb/wM5ZBT6iCKSbBx5gszrFv2+xno9zb5uyVLACSedOCKEGwHvrdKeE9u7rONwxpuEaeJh1aXAMHmWpoy8A/ADmoq8rIKwNXAAAAABJRU5ErkJggg=='); background-size: cover; display: block;"
+  ></span>
+  <img
+        class="gatsby-resp-image-image"
+        alt="alt text"
+        title=""
+        src="/static/625fd06b3eb6adad91cdc8a4d7dbbc92/a6d36/image-46.png"
+        srcset="/static/625fd06b3eb6adad91cdc8a4d7dbbc92/222b7/image-46.png 163w,
+/static/625fd06b3eb6adad91cdc8a4d7dbbc92/ff46a/image-46.png 325w,
+/static/625fd06b3eb6adad91cdc8a4d7dbbc92/a6d36/image-46.png 650w,
+/static/625fd06b3eb6adad91cdc8a4d7dbbc92/e548f/image-46.png 975w,
+/static/625fd06b3eb6adad91cdc8a4d7dbbc92/3c492/image-46.png 1300w,
+/static/625fd06b3eb6adad91cdc8a4d7dbbc92/c678a/image-46.png 1739w"
+        sizes="(max-width: 650px) 100vw, 650px"
+        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+        loading="lazy"
+        decoding="async"
+      />
+    </span></p>
 <p><code>rollup</code>을 찾을 수 없다고...? 이번 에러는 정말 감이 잡히지 않았어요.<br/>
 <code>rollup</code>을 의존성으로 가지고 있는 Vite에서 뭔가 알지 않을까 해서 Maintainer분께 물어보게 되었고, Maintainer분께서는 Yarn PnP의 이슈인 것 같다며 Discussion 링크를 주셨어요. 그곳에서 해답을 얻을 수 있었어요.</p>
 <p>Node는 <code>require(esm)</code>을 구현할 때 ESM 모듈 내부의 정적 import를 처리하기 위해 특별한 경로를 사용했어요.<br/>
