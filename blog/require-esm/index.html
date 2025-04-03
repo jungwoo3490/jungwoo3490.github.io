@@ -313,7 +313,7 @@ data-styled.g34[id="blogPost__Title-sc-1q4tilm-8"]{content:"boesS,"}/*!sc*/
 <p>Node 22.12.0 이전 버전까지는 <code>require(esm)</code>은 실험적 기능이었고, 특정 플래그를 통해서만 사용할 수 있었어요. 하지만 22.12.0부터 <code>require(esm)</code> 기능이 default로 동작하게 되었어요.</p>
 <h2>끝없는 의문</h2>
 <p>22.12.0부터 <code>require(esm)</code>을 지원했구나!!! 여기까지는 이해했어요.</p>
-<p>그런데 까면 깔수록 더욱 이상해집니다... 그럼 22.12.0 이하 버전에서는 에러가 나야 하고, 22.12.0부터 되어야 하는 거 아닌가...?</p>
+<p>그런데 까면 깔수록 더욱 이상해집니다. 그럼 22.12.0 이하 버전에서는 에러가 나야 하고, 22.12.0부터 되어야 하는 거 아닌가...?</p>
 <p>지금은 이와 완전 반대인 상황이에요. 대체 왜 이런 상황이 발생한 걸까요??</p>
 <h2>Vite의 Dual package export 방식</h2>
 <p><code>package.json</code>의 <code>exports</code> field를 활용하면 동일한 import path에 대해 특정 조건에 따라 다른 모듈을 제공할 수 있어요. 이를 Dual Package라고 칭해요.</p>
@@ -403,10 +403,10 @@ data-styled.g34[id="blogPost__Title-sc-1q4tilm-8"]{content:"boesS,"}/*!sc*/
 <p>Vite는 공식적으로는 ESM을 지원해요. 현재는 CJS -> ESM으로 넘어가는 과도기이고, 그렇기에 Dual export를 아직까지는 제공하지만, 추후 deprecated될 확률이 높아요.</p>
 <p>Node에서도 안정적인 마이그레이션을 위해 <code>require(esm)</code>을 지원하기 시작한 것이라는 생각이 들어요. Node 22.12.0부터는 어차피 <code>require(esm)</code>을 지원하는데, Vite에서 굳이 require라는 이유로 비공식적인 CJS를 지원할 필요가 있을까요??</p>
 <p>실제로 Vite 팀에서 같은 생각을 했고, module-sync라는 필드를 만들었어요. Node가 <code>require(esm)</code>을 지원하는 버전이라면 (> 22.12.0) <code>module-sync</code>에 해당되고, 이때는 <code>require</code>/<code>import</code> 구분 없이 모두 ESM 모듈을 내보내게 돼요.</p>
-<p>하지만 esm으로 내보내졌더라도, Node에서 require(esm)을 지원하기 때문에 에러가 발생하지 않아야 해요. 근데 왜 발생하고 있는 걸까요?? 원인은 Yarn PnP에 있었어요.</p>
+<p>하지만 ESM으로 내보내졌더라도, Node에서 <code>require(esm)</code>을 지원하기 때문에 에러가 발생하지 않아야 해요. 근데 왜 발생하고 있는 걸까요?? 원인은 Yarn PnP에 있었어요.</p>
 <h2>Yarn PnP의 모듈 로드 방식</h2>
-<p>Node의 module loader는 기본적으로 <code>node_modules</code>에서 모듈을 찾도록 설계되어 있어요. 하지만 pnp는 <code>node_modules</code>가 존재하지 않아요. pnp.cjs를 기반으로 모듈을 resolution하고 load하게 되죠. 이게 어떻게 가능할까요??</p>
-<p>Yarn PnP는 resolve 단계에서 <code>pnp.cjs</code>를 통해 모듈을 찾게 하기 위해 Node.js의 <code>Module.\_resolveFilename</code>이라는 module을 resolve하는 메소드를 monkey-patch하여 사용하고 있어요.</p>
+<p>Node의 module loader는 기본적으로 <code>node_modules</code>에서 모듈을 찾도록 설계되어 있어요. 하지만 pnp는 <code>node_modules</code>가 존재하지 않아요. pnp.cjs를 기반으로 모듈을 resolve하고 load하게 되죠. 이게 어떻게 가능할까요??</p>
+<p>Yarn PnP는 resolve step에서 <code>pnp.cjs</code>를 통해 모듈을 찾게 하기 위해 Node.js의 <code>Module.\_resolveFilename</code>이라는 module을 resolve하는 메소드를 monkey-patch하여 사용하고 있어요.</p>
 <p>하지만 Yarn 4.5.3에서 patch한 CJS loader에서 <code>require(esm)</code>을 지원하지 않았어요. 결국 Node는 지원을 하지만, Yarn PnP에서 패치한 module loader에서 <code>require(esm)</code>에 대한 지원이 없어서 발생한 문제였어요.</p>
 <p>이는 다행히도 yarn 4.6.0에서 지원을 시작했어요.<br/>
 어떻게 지원을 하게 되었는지 궁금해서 찾아봤는데 다음과 같은 조건문으로 <code>require(esm)</code> 에러 여부를 제어하고 있었어요.</p>
