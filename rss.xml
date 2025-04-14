@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[JUNGWOO DEV LOUNGE's RSS Feed]]></title><description><![CDATA[JUNGWOO DEV LOUNGE]]></description><link>https://jungwoo3490.github.io</link><generator>GatsbyJS</generator><lastBuildDate>Sun, 13 Apr 2025 18:18:31 GMT</lastBuildDate><item><title><![CDATA[Node 버전을 올리기만 했는데 require(esm) 에러가 발생했다구요?]]></title><description><![CDATA[회사에 신규 팀원이 합류해서 프로젝트를 clone하고 의존성을 설치하고 개발서버를 열려고 스크립트를 실행했는데, 오류가 발생했다는 제보를 받았어요. 오류 메시지는 다음과 같았어요.  어라 난 require…]]></description><link>https://jungwoo3490.github.io/blog/require-esm/</link><guid isPermaLink="false">https://jungwoo3490.github.io/blog/require-esm/</guid><pubDate>Tue, 01 Apr 2025 21:01:00 GMT</pubDate><content:encoded>&lt;p&gt;회사에 신규 팀원이 합류해서 프로젝트를 clone하고 의존성을 설치하고 개발서버를 열려고 스크립트를 실행했는데, 오류가 발생했다는 제보를 받았어요.&lt;/p&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[JUNGWOO DEV LOUNGE's RSS Feed]]></title><description><![CDATA[JUNGWOO DEV LOUNGE]]></description><link>https://jungwoo3490.github.io</link><generator>GatsbyJS</generator><lastBuildDate>Mon, 14 Apr 2025 18:46:59 GMT</lastBuildDate><item><title><![CDATA[Node 버전을 올리기만 했는데 require(esm) 에러가 발생했다구요?]]></title><description><![CDATA[회사에 새로 합류하신 팀원분께서 프로젝트를 clone하고 의존성을 설치하고 개발서버를 열려고 커맨드를 실행했는데, 오류가 발생해서 도움을 요청하셨어요. 오류 메시지는 다음과 같았어요.  어라 난 require…]]></description><link>https://jungwoo3490.github.io/blog/require-esm/</link><guid isPermaLink="false">https://jungwoo3490.github.io/blog/require-esm/</guid><pubDate>Tue, 01 Apr 2025 21:01:00 GMT</pubDate><content:encoded>&lt;p&gt;회사에 새로 합류하신 팀원분께서 프로젝트를 clone하고 의존성을 설치하고 개발서버를 열려고 커맨드를 실행했는데, 오류가 발생해서 도움을 요청하셨어요.&lt;/p&gt;
 &lt;p&gt;오류 메시지는 다음과 같았어요.&lt;/p&gt;
 &lt;p&gt;&lt;span
       class=&quot;gatsby-resp-image-wrapper&quot;
@@ -56,7 +56,7 @@
 다른 하나의 옵션은 &lt;code&gt;&quot;module&quot;&lt;/code&gt;이에요. 이럴 경우 ESM 형식으로 해석되어요.&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;.ts&lt;/code&gt; 파일은 TypeScript 4.7 버전부터 &lt;code&gt;tsconfig.json&lt;/code&gt;의 &lt;code&gt;moduleResolution&lt;/code&gt; 필드가 &lt;code&gt;nodenext&lt;/code&gt; 또는 &lt;code&gt;node16&lt;/code&gt; 으로 설정된 경우 위에 서술한 규칙이 똑같이 적용되게 돼요.&lt;/p&gt;
 &lt;p&gt;당시 Vite config 파일의 확장자가 &lt;code&gt;.ts&lt;/code&gt;였는데, 이것저것 마이그레이션하는 과정에서 type field 지정을 빼먹게 되어서 .ts 파일이 CJS 형식으로 해석되어서 require(&quot;vite&quot;)와 같은 형태가 되게 돼요.&lt;/p&gt;
-&lt;p&gt;Vite 공식문서를 보면 다음과 같이 Vite는 6버전부터 모든 모듈을 ESM으로 지원한다고 서술되어 있어요.&lt;br/&gt;&lt;/p&gt;
+&lt;p&gt;Vite 공식문서를 보면 다음과 같이 Vite는 6버전부터 모든 API를 ESM으로 지원한다고 서술되어 있어요.&lt;br/&gt;&lt;/p&gt;
 &lt;p&gt;&lt;span
       class=&quot;gatsby-resp-image-wrapper&quot;
       style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 650px; &quot;
@@ -163,9 +163,9 @@
         decoding=&quot;async&quot;
       /&gt;
     &lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;require로 Vite를 가져오면 &lt;code&gt;index.cjs&lt;/code&gt;, 즉 CJS 모듈을 내보내고, import로 가져오면 esm 모듈을 내보내요.&lt;br/&gt;
-즉, Vite는 무조건 ESM만 제공하는게 아니라, CJS, ESM 두 방식에 대해 모두 대응을 하고 있었어요. 6버전이 됐음에도 불구하구요.&lt;/p&gt;
-&lt;p&gt;실제로 코어 함수들은 모두 &lt;code&gt;node/index.js&lt;/code&gt;에 ESM으로 작성되어 있어요. 그러면 &lt;code&gt;index.cjs&lt;/code&gt; 내부는 어떻게 구성되어 있을까요??&lt;/p&gt;
+&lt;p&gt;require로 Vite를 가져오면 &lt;code&gt;index.cjs&lt;/code&gt;, 즉 CJS 모듈을 가져오고, import로 가져오면 esm 모듈을 가져와요.&lt;br/&gt;
+즉, Vite는 무조건 ESM만 제공하는게 아니라, CJS, ESM 두 방식에 대해 모두 대응을 하고 있었어요. 6버전이 되었음에도 불구하구요.&lt;/p&gt;
+&lt;p&gt;실제로 코어 API들은 모두 &lt;code&gt;node/index.js&lt;/code&gt;에 ESM으로 작성되어 있어요. 그러면 &lt;code&gt;index.cjs&lt;/code&gt; 내부는 어떻게 구성되어 있을까요??&lt;/p&gt;
 &lt;p&gt;먼저 &lt;code&gt;warnCJSUsage()&lt;/code&gt; 를 호출해요. 처음에 22.11.0에서 뜬 warning 문구가 이 함수 호출로 인해서 뜨게 된 것이었어요.&lt;/p&gt;
 &lt;p&gt;&lt;span
       class=&quot;gatsby-resp-image-wrapper&quot;
@@ -217,13 +217,13 @@
       /&gt;
     &lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;index.cjs&lt;/code&gt;에서 먼저 ESM에서 제공하는 함수들을 미리 정의만 해둔 뒤, ESM Vite 모듈을 dynamic import로 가져온 뒤 가져온 모듈에서 미리 정의해둔 함수들에 실제로 매핑하게 돼요. &lt;br/&gt;결국 코어 함수는 ESM에서 제공하지만, CJS에서 이를 짜맞추기 방식으로 가져와서 매핑해서 제공하는 방식으로 CJS 환경에서도 동작하도록 호환성을 보장했던 것이었죠.&lt;/p&gt;
-&lt;p&gt;그래서 22.11.0에서 &lt;code&gt;require(&quot;vite&quot;)&lt;/code&gt;로 가져오면 CJS Vite가 가져와져서 경고는 뜨지만, 정상적으로 동작했던 것이었어요. 의문이 하나 풀렸네요!!&lt;/p&gt;
-&lt;p&gt;그런데 해결되지 않은 다른 의문이 있습니다. 22.12.0부터 &lt;code&gt;require(esm)&lt;/code&gt;을 제공하긴 하지만, 어차피 require로 받아온거니까 위 export field에 따르면 &lt;code&gt;index.cjs&lt;/code&gt;가 받아져서 경고만 뜨고 정상 구동되어야 하는거 아닐까요??&lt;/p&gt;
+&lt;p&gt;그래서 22.11.0에서 &lt;code&gt;require(&quot;vite&quot;)&lt;/code&gt;로 가져오면 CJS Vite를 가져와서 경고는 뜨지만, 정상적으로 동작했던 것이었어요. 의문이 하나 풀렸네요!!&lt;/p&gt;
+&lt;p&gt;그런데 해결되지 않은 다른 의문이 있습니다. 22.12.0부터 &lt;code&gt;require(esm)&lt;/code&gt;을 제공하긴 하지만, 어차피 require로 받아온거니까 위 export field에 따르면 &lt;code&gt;index.cjs&lt;/code&gt;를 가져와서 경고만 뜨고 정상 구동되어야 하는거 아닐까요??&lt;/p&gt;
 &lt;p&gt;다시 위로 가서 export 필드를 보면, 익숙한 &lt;code&gt;import&lt;/code&gt;, &lt;code&gt;require&lt;/code&gt; 말고도 &lt;code&gt;module-sync&lt;/code&gt;라는 낯선 친구가 있습니다. 이 친구는 뭐 하는 친구일까요??&lt;/p&gt;
 &lt;p&gt;Vite는 공식적으로는 ESM을 지원해요. 현재는 CJS -&gt; ESM으로 넘어가는 과도기이고, 그렇기에 Dual export를 아직까지는 제공하지만, 추후 deprecated될 확률이 높아요.&lt;/p&gt;
 &lt;p&gt;Node에서도 안정적인 마이그레이션을 위해 &lt;code&gt;require(esm)&lt;/code&gt;을 지원하기 시작한 것이라는 생각이 들어요. Node 22.12.0부터는 어차피 &lt;code&gt;require(esm)&lt;/code&gt;을 지원하는데, Vite에서 굳이 require라는 이유로 비공식적인 CJS를 지원할 필요가 있을까요??&lt;/p&gt;
-&lt;p&gt;실제로 Vite 팀에서 같은 생각을 했고, module-sync라는 필드를 만들었어요. Node가 &lt;code&gt;require(esm)&lt;/code&gt;을 지원하는 버전이라면 (&gt;= 22.12.0) &lt;code&gt;module-sync&lt;/code&gt;에 해당되고, 이때는 &lt;code&gt;require&lt;/code&gt;/&lt;code&gt;import&lt;/code&gt; 구분 없이 모두 ESM 모듈을 내보내게 돼요.&lt;/p&gt;
-&lt;p&gt;하지만 ESM으로 내보내졌더라도, Node에서 &lt;code&gt;require(esm)&lt;/code&gt;을 지원하기 때문에 에러가 발생하지 않아야 해요. 근데 왜 발생하고 있는 걸까요?? 원인은 Yarn PnP에 있었어요.&lt;/p&gt;
+&lt;p&gt;실제로 Vite 팀에서 같은 생각을 했고, &lt;code&gt;module-sync&lt;/code&gt;라는 필드를 만들었어요. Node가 &lt;code&gt;require(esm)&lt;/code&gt;을 지원하는 버전이라면 (&gt;= 22.12.0) &lt;code&gt;module-sync&lt;/code&gt;에 해당되고, 이때는 &lt;code&gt;require&lt;/code&gt;/&lt;code&gt;import&lt;/code&gt; 구분 없이 모두 ESM 모듈을 가져오게 돼요.&lt;/p&gt;
+&lt;p&gt;하지만 ESM Vite를 가져왔더라도, Node에서 &lt;code&gt;require(esm)&lt;/code&gt;을 지원하기 때문에 에러가 발생하지 않아야 해요. 근데 왜 발생하고 있는 걸까요?? 원인은 Yarn PnP에 있었어요.&lt;/p&gt;
 &lt;h2&gt;Yarn PnP의 모듈 로드 방식&lt;/h2&gt;
 &lt;p&gt;Node의 module loader는 기본적으로 &lt;code&gt;node_modules&lt;/code&gt;에서 모듈을 찾도록 설계되어 있어요. 하지만 pnp는 &lt;code&gt;node_modules&lt;/code&gt;가 존재하지 않아요. pnp.cjs를 기반으로 모듈을 resolve하고 load하게 되죠. 이게 어떻게 가능할까요??&lt;/p&gt;
 &lt;p&gt;Yarn PnP는 resolve step에서 &lt;code&gt;pnp.cjs&lt;/code&gt;를 통해 모듈을 찾게 하기 위해 Node.js의 &lt;code&gt;Module.\_resolveFilename&lt;/code&gt;이라는 module을 resolve하는 메소드를 monkey-patch하여 사용하고 있어요.&lt;/p&gt;
@@ -369,7 +369,7 @@
 &lt;p&gt;실제로 Node 버전을 23.5.0 이상으로 올리게 되면, 에러가 말끔히 사라지게 돼요.&lt;/p&gt;
 &lt;h2&gt;느낀 점&lt;/h2&gt;
 &lt;p&gt;이슈의 원인을 파고들면서 모듈 시스템에 대해 한층 깊게 이해할 수 있게 되었고, Node &lt;code&gt;CJS&lt;/code&gt;/&lt;code&gt;ESM&lt;/code&gt; loader가 모듈을 각각 어떻게 로드하는지, Vite는 어떻게 &lt;code&gt;ESM&lt;/code&gt;/&lt;code&gt;CJS&lt;/code&gt;를 둘 다 지원하는지, Yarn PnP는 어떻게 모듈을 로드하는지를 직접 코드를 뜯어보며 이해하가는 과정이 즐거웠던 것 같아요.&lt;/p&gt;
-&lt;p&gt;모듈 시스템의 과도기에서만 겪을 수 있는 이슈를 겪고, 원인을 파악해가는 과정에서 많은 것을 배우고 느낄 수 있었던 것 같습니다.&lt;/p&gt;
+&lt;p&gt;모듈 시스템의 과도기에서만 겪을 수 있는 이슈를 겪고, 원인을 파악해가는 과정에서 많은 것을 배웠던 값진 경험이었습니다 😄&lt;/p&gt;
 &lt;style class=&quot;grvsc-styles&quot;&gt;
   .grvsc-container {
     overflow: auto;

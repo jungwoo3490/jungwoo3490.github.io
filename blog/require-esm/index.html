@@ -178,7 +178,7 @@ data-styled.g34[id="blogPost__Title-sc-1q4tilm-8"]{content:"boesS,"}/*!sc*/
 
             setTheme(preferredTheme || (darkQuery.matches ? 'dark' : 'light'))
           })()
-        </script><div id="___gatsby"><div style="outline:none" tabindex="-1" id="gatsby-focus-wrapper"><div class="layout__Container-sc-f55ym1-0 hAIaT"><nav aria-label="Global Navigation" class="navBar__Nav-sc-1f8zn2y-0 dNcQMS"><div class="background__Background-sc-18hdsa0-0 navBar__NavBackground-sc-1f8zn2y-4 hJNGvl diBFID"></div><div class="navBar__Content-sc-1f8zn2y-1 ipQEgj"><h1 class="navBar__Title-sc-1f8zn2y-2 cQxjYt"><a href="/">JUNGWOO DEV LOUNGE</a></h1><div class="navBar__LinkWrap-sc-1f8zn2y-7 jMAIaA"><div class="navBar__Curtain-sc-1f8zn2y-5 goJkks"></div><div class="navBar__LinkContent-sc-1f8zn2y-6 jeuEBk"><button aria-label="Menu" class="menuIcon__MenuIconButton-sc-1xhrvbj-2 fgQOSA"><div class="menuIcon__MenuIconBreadTop-sc-1xhrvbj-0 dWRTDw"><div></div></div><div class="menuIcon__MenuIconBreadBottom-sc-1xhrvbj-1 cOLCYd"><div></div></div></button><ul class="navBar__LinkUl-sc-1f8zn2y-3 jwTevy"><li><a href="/">Home</a></li><li><a href="/about/">About</a></li><li><a target="__blank" rel="noreferrer" href="https://github.com/jungwoo3490">Github</a></li><li><button class="themeToggleButton__Button-sc-z0axdq-4 cMkunZ"><div class="background__Background-sc-18hdsa0-0 themeToggleButton__ButtonBackground-sc-z0axdq-1 hJNGvl dLYwpp"></div><div class="themeToggleButton__Content-sc-z0axdq-2 kwdrvX"><svg version="1.1" x="0px" y="0px" viewBox="0 0 24 24" class="themeToggleButton__Icon-sc-z0axdq-0 jscdYX"><path d="M16.3,15.2c-4.1-1.2-7.2-4.8-7.5-9.1C8.8,4.8,8.9,3.5,9.3,2.4C4.8,3.6,1.5,8,2.1,13.1c0.5,4.6,4.2,8.3,8.7,8.8 c4.9,0.6,9.2-2.4,10.6-6.7C19.9,15.7,18.1,15.8,16.3,15.2z"></path></svg><span class="themeToggleButton__Text-sc-z0axdq-3 imFwpW">Dark theme</span></div></button></li></ul></div></div></div></nav><main><article><div class="blogPost__OuterWrapper-sc-1q4tilm-0 fgUaov"><div class="blogPost__InnerWrapper-sc-1q4tilm-1 iHmPkZ"><div><header><div class="blogPost__Info-sc-1q4tilm-4 eNIaZJ"><span class="category__Category-sc-wcpv1v-0 blogPost__PostCategory-sc-1q4tilm-3 eSrafG hNiQrH">Dev</span><time dateTime="2025-04-01" class="dateTime__DateTime-sc-105pimp-0 blogPost__Time-sc-1q4tilm-5 gqaHkj ePQDZL">2025-04-01</time></div><h1 class="blogPost__Title-sc-1q4tilm-8 boesS">Node 버전을 올리기만 했는데 require(esm) 에러가 발생했다구요?</h1><p class="blogPost__Desc-sc-1q4tilm-6 jooeDS">Node, Yarn, Vite 코드를 뜯어보며 에러의 원인을 분석해나간 과정을 정리한 포스트입니다.</p></header><div class="blogPost__Divider-sc-1q4tilm-7 kXFDco"></div><article class="markdown__Markdown-sc-j1kqle-0 eaqefQ"><p>회사에 신규 팀원이 합류해서 프로젝트를 clone하고 의존성을 설치하고 개발서버를 열려고 스크립트를 실행했는데, 오류가 발생했다는 제보를 받았어요.</p>
+        </script><div id="___gatsby"><div style="outline:none" tabindex="-1" id="gatsby-focus-wrapper"><div class="layout__Container-sc-f55ym1-0 hAIaT"><nav aria-label="Global Navigation" class="navBar__Nav-sc-1f8zn2y-0 dNcQMS"><div class="background__Background-sc-18hdsa0-0 navBar__NavBackground-sc-1f8zn2y-4 hJNGvl diBFID"></div><div class="navBar__Content-sc-1f8zn2y-1 ipQEgj"><h1 class="navBar__Title-sc-1f8zn2y-2 cQxjYt"><a href="/">JUNGWOO DEV LOUNGE</a></h1><div class="navBar__LinkWrap-sc-1f8zn2y-7 jMAIaA"><div class="navBar__Curtain-sc-1f8zn2y-5 goJkks"></div><div class="navBar__LinkContent-sc-1f8zn2y-6 jeuEBk"><button aria-label="Menu" class="menuIcon__MenuIconButton-sc-1xhrvbj-2 fgQOSA"><div class="menuIcon__MenuIconBreadTop-sc-1xhrvbj-0 dWRTDw"><div></div></div><div class="menuIcon__MenuIconBreadBottom-sc-1xhrvbj-1 cOLCYd"><div></div></div></button><ul class="navBar__LinkUl-sc-1f8zn2y-3 jwTevy"><li><a href="/">Home</a></li><li><a href="/about/">About</a></li><li><a target="__blank" rel="noreferrer" href="https://github.com/jungwoo3490">Github</a></li><li><button class="themeToggleButton__Button-sc-z0axdq-4 cMkunZ"><div class="background__Background-sc-18hdsa0-0 themeToggleButton__ButtonBackground-sc-z0axdq-1 hJNGvl dLYwpp"></div><div class="themeToggleButton__Content-sc-z0axdq-2 kwdrvX"><svg version="1.1" x="0px" y="0px" viewBox="0 0 24 24" class="themeToggleButton__Icon-sc-z0axdq-0 jscdYX"><path d="M16.3,15.2c-4.1-1.2-7.2-4.8-7.5-9.1C8.8,4.8,8.9,3.5,9.3,2.4C4.8,3.6,1.5,8,2.1,13.1c0.5,4.6,4.2,8.3,8.7,8.8 c4.9,0.6,9.2-2.4,10.6-6.7C19.9,15.7,18.1,15.8,16.3,15.2z"></path></svg><span class="themeToggleButton__Text-sc-z0axdq-3 imFwpW">Dark theme</span></div></button></li></ul></div></div></div></nav><main><article><div class="blogPost__OuterWrapper-sc-1q4tilm-0 fgUaov"><div class="blogPost__InnerWrapper-sc-1q4tilm-1 iHmPkZ"><div><header><div class="blogPost__Info-sc-1q4tilm-4 eNIaZJ"><span class="category__Category-sc-wcpv1v-0 blogPost__PostCategory-sc-1q4tilm-3 eSrafG hNiQrH">Dev</span><time dateTime="2025-04-01" class="dateTime__DateTime-sc-105pimp-0 blogPost__Time-sc-1q4tilm-5 gqaHkj ePQDZL">2025-04-01</time></div><h1 class="blogPost__Title-sc-1q4tilm-8 boesS">Node 버전을 올리기만 했는데 require(esm) 에러가 발생했다구요?</h1><p class="blogPost__Desc-sc-1q4tilm-6 jooeDS">Node, Yarn, Vite 코드를 뜯어보며 에러의 원인을 분석해나간 과정을 정리한 포스트입니다.</p></header><div class="blogPost__Divider-sc-1q4tilm-7 kXFDco"></div><article class="markdown__Markdown-sc-j1kqle-0 eaqefQ"><p>회사에 새로 합류하신 팀원분께서 프로젝트를 clone하고 의존성을 설치하고 개발서버를 열려고 커맨드를 실행했는데, 오류가 발생해서 도움을 요청하셨어요.</p>
 <p>오류 메시지는 다음과 같았어요.</p>
 <p><span
       class="gatsby-resp-image-wrapper"
@@ -236,7 +236,7 @@ data-styled.g34[id="blogPost__Title-sc-1q4tilm-8"]{content:"boesS,"}/*!sc*/
 다른 하나의 옵션은 <code>"module"</code>이에요. 이럴 경우 ESM 형식으로 해석되어요.</p>
 <p><code>.ts</code> 파일은 TypeScript 4.7 버전부터 <code>tsconfig.json</code>의 <code>moduleResolution</code> 필드가 <code>nodenext</code> 또는 <code>node16</code> 으로 설정된 경우 위에 서술한 규칙이 똑같이 적용되게 돼요.</p>
 <p>당시 Vite config 파일의 확장자가 <code>.ts</code>였는데, 이것저것 마이그레이션하는 과정에서 type field 지정을 빼먹게 되어서 .ts 파일이 CJS 형식으로 해석되어서 require("vite")와 같은 형태가 되게 돼요.</p>
-<p>Vite 공식문서를 보면 다음과 같이 Vite는 6버전부터 모든 모듈을 ESM으로 지원한다고 서술되어 있어요.<br/></p>
+<p>Vite 공식문서를 보면 다음과 같이 Vite는 6버전부터 모든 API를 ESM으로 지원한다고 서술되어 있어요.<br/></p>
 <p><span
       class="gatsby-resp-image-wrapper"
       style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 650px; "
@@ -343,9 +343,9 @@ data-styled.g34[id="blogPost__Title-sc-1q4tilm-8"]{content:"boesS,"}/*!sc*/
         decoding="async"
       />
     </span></p>
-<p>require로 Vite를 가져오면 <code>index.cjs</code>, 즉 CJS 모듈을 내보내고, import로 가져오면 esm 모듈을 내보내요.<br/>
-즉, Vite는 무조건 ESM만 제공하는게 아니라, CJS, ESM 두 방식에 대해 모두 대응을 하고 있었어요. 6버전이 됐음에도 불구하구요.</p>
-<p>실제로 코어 함수들은 모두 <code>node/index.js</code>에 ESM으로 작성되어 있어요. 그러면 <code>index.cjs</code> 내부는 어떻게 구성되어 있을까요??</p>
+<p>require로 Vite를 가져오면 <code>index.cjs</code>, 즉 CJS 모듈을 가져오고, import로 가져오면 esm 모듈을 가져와요.<br/>
+즉, Vite는 무조건 ESM만 제공하는게 아니라, CJS, ESM 두 방식에 대해 모두 대응을 하고 있었어요. 6버전이 되었음에도 불구하구요.</p>
+<p>실제로 코어 API들은 모두 <code>node/index.js</code>에 ESM으로 작성되어 있어요. 그러면 <code>index.cjs</code> 내부는 어떻게 구성되어 있을까요??</p>
 <p>먼저 <code>warnCJSUsage()</code> 를 호출해요. 처음에 22.11.0에서 뜬 warning 문구가 이 함수 호출로 인해서 뜨게 된 것이었어요.</p>
 <p><span
       class="gatsby-resp-image-wrapper"
@@ -397,13 +397,13 @@ data-styled.g34[id="blogPost__Title-sc-1q4tilm-8"]{content:"boesS,"}/*!sc*/
       />
     </span></p>
 <p><code>index.cjs</code>에서 먼저 ESM에서 제공하는 함수들을 미리 정의만 해둔 뒤, ESM Vite 모듈을 dynamic import로 가져온 뒤 가져온 모듈에서 미리 정의해둔 함수들에 실제로 매핑하게 돼요. <br/>결국 코어 함수는 ESM에서 제공하지만, CJS에서 이를 짜맞추기 방식으로 가져와서 매핑해서 제공하는 방식으로 CJS 환경에서도 동작하도록 호환성을 보장했던 것이었죠.</p>
-<p>그래서 22.11.0에서 <code>require("vite")</code>로 가져오면 CJS Vite가 가져와져서 경고는 뜨지만, 정상적으로 동작했던 것이었어요. 의문이 하나 풀렸네요!!</p>
-<p>그런데 해결되지 않은 다른 의문이 있습니다. 22.12.0부터 <code>require(esm)</code>을 제공하긴 하지만, 어차피 require로 받아온거니까 위 export field에 따르면 <code>index.cjs</code>가 받아져서 경고만 뜨고 정상 구동되어야 하는거 아닐까요??</p>
+<p>그래서 22.11.0에서 <code>require("vite")</code>로 가져오면 CJS Vite를 가져와서 경고는 뜨지만, 정상적으로 동작했던 것이었어요. 의문이 하나 풀렸네요!!</p>
+<p>그런데 해결되지 않은 다른 의문이 있습니다. 22.12.0부터 <code>require(esm)</code>을 제공하긴 하지만, 어차피 require로 받아온거니까 위 export field에 따르면 <code>index.cjs</code>를 가져와서 경고만 뜨고 정상 구동되어야 하는거 아닐까요??</p>
 <p>다시 위로 가서 export 필드를 보면, 익숙한 <code>import</code>, <code>require</code> 말고도 <code>module-sync</code>라는 낯선 친구가 있습니다. 이 친구는 뭐 하는 친구일까요??</p>
 <p>Vite는 공식적으로는 ESM을 지원해요. 현재는 CJS -> ESM으로 넘어가는 과도기이고, 그렇기에 Dual export를 아직까지는 제공하지만, 추후 deprecated될 확률이 높아요.</p>
 <p>Node에서도 안정적인 마이그레이션을 위해 <code>require(esm)</code>을 지원하기 시작한 것이라는 생각이 들어요. Node 22.12.0부터는 어차피 <code>require(esm)</code>을 지원하는데, Vite에서 굳이 require라는 이유로 비공식적인 CJS를 지원할 필요가 있을까요??</p>
-<p>실제로 Vite 팀에서 같은 생각을 했고, module-sync라는 필드를 만들었어요. Node가 <code>require(esm)</code>을 지원하는 버전이라면 (>= 22.12.0) <code>module-sync</code>에 해당되고, 이때는 <code>require</code>/<code>import</code> 구분 없이 모두 ESM 모듈을 내보내게 돼요.</p>
-<p>하지만 ESM으로 내보내졌더라도, Node에서 <code>require(esm)</code>을 지원하기 때문에 에러가 발생하지 않아야 해요. 근데 왜 발생하고 있는 걸까요?? 원인은 Yarn PnP에 있었어요.</p>
+<p>실제로 Vite 팀에서 같은 생각을 했고, <code>module-sync</code>라는 필드를 만들었어요. Node가 <code>require(esm)</code>을 지원하는 버전이라면 (>= 22.12.0) <code>module-sync</code>에 해당되고, 이때는 <code>require</code>/<code>import</code> 구분 없이 모두 ESM 모듈을 가져오게 돼요.</p>
+<p>하지만 ESM Vite를 가져왔더라도, Node에서 <code>require(esm)</code>을 지원하기 때문에 에러가 발생하지 않아야 해요. 근데 왜 발생하고 있는 걸까요?? 원인은 Yarn PnP에 있었어요.</p>
 <h2>Yarn PnP의 모듈 로드 방식</h2>
 <p>Node의 module loader는 기본적으로 <code>node_modules</code>에서 모듈을 찾도록 설계되어 있어요. 하지만 pnp는 <code>node_modules</code>가 존재하지 않아요. pnp.cjs를 기반으로 모듈을 resolve하고 load하게 되죠. 이게 어떻게 가능할까요??</p>
 <p>Yarn PnP는 resolve step에서 <code>pnp.cjs</code>를 통해 모듈을 찾게 하기 위해 Node.js의 <code>Module.\_resolveFilename</code>이라는 module을 resolve하는 메소드를 monkey-patch하여 사용하고 있어요.</p>
@@ -549,7 +549,7 @@ data-styled.g34[id="blogPost__Title-sc-1q4tilm-8"]{content:"boesS,"}/*!sc*/
 <p>실제로 Node 버전을 23.5.0 이상으로 올리게 되면, 에러가 말끔히 사라지게 돼요.</p>
 <h2>느낀 점</h2>
 <p>이슈의 원인을 파고들면서 모듈 시스템에 대해 한층 깊게 이해할 수 있게 되었고, Node <code>CJS</code>/<code>ESM</code> loader가 모듈을 각각 어떻게 로드하는지, Vite는 어떻게 <code>ESM</code>/<code>CJS</code>를 둘 다 지원하는지, Yarn PnP는 어떻게 모듈을 로드하는지를 직접 코드를 뜯어보며 이해하가는 과정이 즐거웠던 것 같아요.</p>
-<p>모듈 시스템의 과도기에서만 겪을 수 있는 이슈를 겪고, 원인을 파악해가는 과정에서 많은 것을 배우고 느낄 수 있었던 것 같습니다.</p>
+<p>모듈 시스템의 과도기에서만 겪을 수 있는 이슈를 겪고, 원인을 파악해가는 과정에서 많은 것을 배웠던 값진 경험이었습니다 😄</p>
 <style class="grvsc-styles">
   .grvsc-container {
     overflow: auto;
